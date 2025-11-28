@@ -1,0 +1,22 @@
+{
+  "paths": {
+    "input_file": "input_data.jsonl",
+    "output_file": "evaluation_results.jsonl",
+    "embedding_model": "/hpc2hdd/home/yuxuanzhao/init_model/gme-Qwen2-VL-7B-Instruct/",
+    "llm_model": "/hpc2hdd/home/yuxuanzhao/init_model/Qwen2.5-14B-Instruct/",
+    "prompt_json": "prompt.json"
+  },
+  "cuda": {
+    "visible_devices": "1"
+  },
+  "llm_generation": {
+    "max_new_tokens": 512,
+    "temperature": 0.05,
+    "top_p": 0.9,
+    "do_sample": true
+  },
+  "batch_processing": {
+    "enable": false,
+    "batch_size": 8
+  }
+}
