@@ -3,9 +3,9 @@
 ================================================================================
 
 总样本数: 2711
-成功提取: 2708
-提取失败: 3
-成功率: 99.89%
+成功提取: 2659
+提取失败: 52
+成功率: 98.08%
 
 ================================================================================
 提取失败的样本详情
@@ -14,21 +14,335 @@
 注意: 这些样本在评估中被标记为'EXTRACTION_FAILED'类别
 这表示模型输出中未包含任何预定义的有效类别词
 
-样本 273:
-原始输出: None of the provided categories seem to fit the user's request, which appears to be asking about earning articles or writing content. The category might be better suited under something like "CONTENT CREATION" or "WRITING JOBS," but since that option is not available, it does not fit any of the given categories.
+样本 10:
+原始输出: SEARCH
 提取结果: EXTRACTION_FAILED
 真实类别: ORDER
 --------------------------------------------------------------------------------
 
-样本 622:
-原始输出: None of the provided categories seem to fit the user's request about checking an "early exit penalty." This request might relate to a policy or fee structure, possibly for an event or program, but it does not align with any of the given categories directly. If you need to add a category for such specific inquiries, you might consider adding something like "POLICY" or "EVENT."
+样本 57:
+原始输出: The category for "where do I earn something?" is:
+
+INCOME
+
+This question pertains to earning money or finding ways to generate income, which falls under the broader category of financial activities and earnings opportunities.
+提取结果: EXTRACTION_FAILED
+真实类别: ORDER
+--------------------------------------------------------------------------------
+
+样本 96:
+原始输出: The category for "where do I acquire some items?" is:
+
+SEARCH
+
+This query is asking about finding information or resources related to acquiring items, which falls under the broader category of SEARCH.
+提取结果: EXTRACTION_FAILED
+真实类别: ORDER
+--------------------------------------------------------------------------------
+
+样本 145:
+原始输出: SEARCH
+提取结果: EXTRACTION_FAILED
+真实类别: ORDER
+--------------------------------------------------------------------------------
+
+样本 178:
+原始输出: The category for "is it possible to acquire an article?" would be:
+
+INFORMATION REQUEST
+
+This type of question falls under the broader category of INFORMATION REQUESTS as it seeks factual information about whether or not something (in this case, acquiring an article) is feasible or available.
+提取结果: EXTRACTION_FAILED
+真实类别: ORDER
+--------------------------------------------------------------------------------
+
+样本 251:
+原始输出: The category for this user request is **INFORMATION REQUEST** or **HELP DESK SUPPORT**. The user is seeking assistance with obtaining articles from an online platform, which falls under the broader category of information support or customer service inquiries.
+提取结果: EXTRACTION_FAILED
+真实类别: ORDER
+--------------------------------------------------------------------------------
+
+样本 252:
+原始输出: CATEGORY: SHOPIFY
+提取结果: EXTRACTION_FAILED
+真实类别: ORDER
+--------------------------------------------------------------------------------
+
+样本 273:
+原始输出: The category for the user request "where can I earn some articles?" is:
+
+SEARCH
+
+This request seems to be asking about information or resources related to earning articles, which could fall under various search-related topics depending on the context (e.g., online courses, freelance writing opportunities, etc.). However, without more specific details, SEARCH is the most general and appropriate classification among the given options.
+提取结果: EXTRACTION_FAILED
+真实类别: ORDER
+--------------------------------------------------------------------------------
+
+样本 321:
+原始输出: The category for the user request "what do I have to do to earn some items?" is:
+
+INVOICING
+
+This request pertains to earning items and involves financial transactions or billing processes, which falls under the invoicing category.
+提取结果: EXTRACTION_FAILED
+真实类别: ORDER
+--------------------------------------------------------------------------------
+
+样本 629:
+原始输出: CATEGORY: SUPPORT
 提取结果: EXTRACTION_FAILED
 真实类别: CANCEL
 --------------------------------------------------------------------------------
 
-样本 637:
-原始输出: None of the provided categories seem to fit the user request "what are the penalties for breaking the contract?" This request is more related to understanding terms and conditions or contract specifics, which might fall under a broader category like "POLICY" or "AGREEMENT," but since that option is not available, it does not clearly fit any of the given categories.
+样本 630:
+原始输出: CATEGORY: HELP_REQUEST
 提取结果: EXTRACTION_FAILED
 真实类别: CANCEL
+--------------------------------------------------------------------------------
+
+样本 768:
+原始输出: CATEGORY: SHIPING
+提取结果: EXTRACTION_FAILED
+真实类别: INVOICE
+--------------------------------------------------------------------------------
+
+样本 1138:
+原始输出: CATEGORY: TRACKING
+提取结果: EXTRACTION_FAILED
+真实类别: REFUND
+--------------------------------------------------------------------------------
+
+样本 1184:
+原始输出: CATEGORY: SHIPING
+提取结果: EXTRACTION_FAILED
+真实类别: REFUND
+--------------------------------------------------------------------------------
+
+样本 1223:
+原始输出: CATEGORY: TRACKING
+提取结果: EXTRACTION_FAILED
+真实类别: REFUND
+--------------------------------------------------------------------------------
+
+样本 1332:
+原始输出: TRACKING
+提取结果: EXTRACTION_FAILED
+真实类别: REFUND
+--------------------------------------------------------------------------------
+
+样本 1401:
+原始输出: CATEGORY: SHIPING
+提取结果: EXTRACTION_FAILED
+真实类别: REFUND
+--------------------------------------------------------------------------------
+
+样本 1486:
+原始输出: CATEGORY: SUPPORT
+提取结果: EXTRACTION_FAILED
+真实类别: FEEDBACK
+--------------------------------------------------------------------------------
+
+样本 1862:
+原始输出: CATEGORY: PASSWORD_RESET
+提取结果: EXTRACTION_FAILED
+真实类别: ACCOUNT
+--------------------------------------------------------------------------------
+
+样本 1945:
+原始输出: CATEGORY: SUPPORT
+提取结果: EXTRACTION_FAILED
+真实类别: ACCOUNT
+--------------------------------------------------------------------------------
+
+样本 2021:
+原始输出: CATEGORY: SUPPORT
+提取结果: EXTRACTION_FAILED
+真实类别: ACCOUNT
+--------------------------------------------------------------------------------
+
+样本 2062:
+原始输出: CATEGORY
+提取结果: EXTRACTION_FAILED
+真实类别: ACCOUNT
+--------------------------------------------------------------------------------
+
+样本 2081:
+原始输出: CATEGORY: PASSWORD RESET/RECOVERY
+提取结果: EXTRACTION_FAILED
+真实类别: ACCOUNT
+--------------------------------------------------------------------------------
+
+样本 2085:
+原始输出: CATEGORY: PASSWORD RESTORATION
+提取结果: EXTRACTION_FAILED
+真实类别: ACCOUNT
+--------------------------------------------------------------------------------
+
+样本 2111:
+原始输出: CATEGORY: PASSWORD RESET/RECOVERY
+提取结果: EXTRACTION_FAILED
+真实类别: ACCOUNT
+--------------------------------------------------------------------------------
+
+样本 2130:
+原始输出: CATEGORY
+提取结果: EXTRACTION_FAILED
+真实类别: ACCOUNT
+--------------------------------------------------------------------------------
+
+样本 2154:
+原始输出: CATEGORY: PASSWORD_RESET
+提取结果: EXTRACTION_FAILED
+真实类别: ACCOUNT
+--------------------------------------------------------------------------------
+
+样本 2178:
+原始输出: CATEGORY: INQUIRY
+提取结果: EXTRACTION_FAILED
+真实类别: ACCOUNT
+--------------------------------------------------------------------------------
+
+样本 2224:
+原始输出: CATEGORY
+提取结果: EXTRACTION_FAILED
+真实类别: ACCOUNT
+--------------------------------------------------------------------------------
+
+样本 2248:
+原始输出: CATEGORY
+提取结果: EXTRACTION_FAILED
+真实类别: ACCOUNT
+--------------------------------------------------------------------------------
+
+样本 2305:
+原始输出: CATEGORY
+提取结果: EXTRACTION_FAILED
+真实类别: ACCOUNT
+--------------------------------------------------------------------------------
+
+样本 2314:
+原始输出: CATEGORY
+提取结果: EXTRACTION_FAILED
+真实类别: ACCOUNT
+--------------------------------------------------------------------------------
+
+样本 2368:
+原始输出: CATEGORY: PASSWORD_RECOVERY
+提取结果: EXTRACTION_FAILED
+真实类别: ACCOUNT
+--------------------------------------------------------------------------------
+
+样本 2418:
+原始输出: CATEGORY: SHIPMENT
+提取结果: EXTRACTION_FAILED
+真实类别: DELIVERY
+--------------------------------------------------------------------------------
+
+样本 2423:
+原始输出: CATEGORY: SHIPMENT
+提取结果: EXTRACTION_FAILED
+真实类别: DELIVERY
+--------------------------------------------------------------------------------
+
+样本 2426:
+原始输出: CATEGORY: SHIPMENT
+提取结果: EXTRACTION_FAILED
+真实类别: DELIVERY
+--------------------------------------------------------------------------------
+
+样本 2456:
+原始输出: CATEGORY: SHIPMENT
+提取结果: EXTRACTION_FAILED
+真实类别: DELIVERY
+--------------------------------------------------------------------------------
+
+样本 2469:
+原始输出: CATEGORY: SHIPMENT
+提取结果: EXTRACTION_FAILED
+真实类别: DELIVERY
+--------------------------------------------------------------------------------
+
+样本 2478:
+原始输出: CATEGORY: SHIPMENT
+提取结果: EXTRACTION_FAILED
+真实类别: DELIVERY
+--------------------------------------------------------------------------------
+
+样本 2481:
+原始输出: CATEGORY: SHIPMENT
+提取结果: EXTRACTION_FAILED
+真实类别: DELIVERY
+--------------------------------------------------------------------------------
+
+样本 2507:
+原始输出: CATEGORY: SHIPMENT OPTIONS
+提取结果: EXTRACTION_FAILED
+真实类别: DELIVERY
+--------------------------------------------------------------------------------
+
+样本 2515:
+原始输出: CATEGORY: SHIPMENT
+提取结果: EXTRACTION_FAILED
+真实类别: DELIVERY
+--------------------------------------------------------------------------------
+
+样本 2546:
+原始输出: CATEGORY: SHIPMENT
+提取结果: EXTRACTION_FAILED
+真实类别: DELIVERY
+--------------------------------------------------------------------------------
+
+样本 2547:
+原始输出: CATEGORY: SHIPMENT
+提取结果: EXTRACTION_FAILED
+真实类别: DELIVERY
+--------------------------------------------------------------------------------
+
+样本 2561:
+原始输出: CATEGORY: SHIPMENT
+提取结果: EXTRACTION_FAILED
+真实类别: DELIVERY
+--------------------------------------------------------------------------------
+
+样本 2573:
+原始输出: CATEGORY: SHIPMENT
+提取结果: EXTRACTION_FAILED
+真实类别: DELIVERY
+--------------------------------------------------------------------------------
+
+样本 2592:
+原始输出: CATEGORY: SHIPMENT
+提取结果: EXTRACTION_FAILED
+真实类别: DELIVERY
+--------------------------------------------------------------------------------
+
+样本 2603:
+原始输出: CATEGORY: SHIPMENT
+提取结果: EXTRACTION_FAILED
+真实类别: DELIVERY
+--------------------------------------------------------------------------------
+
+样本 2643:
+原始输出: CATEGORY: SHIPING
+提取结果: EXTRACTION_FAILED
+真实类别: SUBSCRIPTION
+--------------------------------------------------------------------------------
+
+样本 2674:
+原始输出: CATEGORY: SHIPING
+提取结果: EXTRACTION_FAILED
+真实类别: SUBSCRIPTION
+--------------------------------------------------------------------------------
+
+样本 2685:
+原始输出: CATEGORY: SHIPING
+提取结果: EXTRACTION_FAILED
+真实类别: SUBSCRIPTION
+--------------------------------------------------------------------------------
+
+样本 2690:
+原始输出: CATEGORY: INVOICING
+提取结果: EXTRACTION_FAILED
+真实类别: SUBSCRIPTION
 --------------------------------------------------------------------------------
 

@@ -1,0 +1,52 @@
+{
+  "config_name": "4_qlora_8bit",
+  "model_name": "",
+  "train_type": "lora",
+  "quantization": "8bit",
+  "total_training_time": 456.80544114112854,
+  "avg_step_time": 13.582601748406887,
+  "samples_per_second": 1.0945578904466828,
+  "peak_memory_gb": 1.8852295875549316,
+  "avg_memory_gb": 1.7774895032246907,
+  "memory_snapshots": [
+    {
+      "timestamp": 1764326381.9837432,
+      "allocated_gb": 1.7774887084960938,
+      "reserved_gb": 3.51171875,
+      "max_allocated_gb": 1.8852295875549316,
+      "max_reserved_gb": 3.51171875,
+      "free_gb": 70.83111572265625,
+      "total_gb": 79.32501220703125
+    },
+    {
+      "timestamp": 1764326544.9922194,
+      "allocated_gb": 1.777491569519043,
+      "reserved_gb": 3.51171875,
+      "max_allocated_gb": 1.8852295875549316,
+      "max_reserved_gb": 3.51171875,
+      "free_gb": 70.83111572265625,
+      "total_gb": 79.32501220703125
+    },
+    {
+      "timestamp": 1764326679.5144968,
+      "allocated_gb": 1.7774882316589355,
+      "reserved_gb": 3.51171875,
+      "max_allocated_gb": 1.8852295875549316,
+      "max_reserved_gb": 3.51171875,
+      "free_gb": 74.75238037109375,
+      "total_gb": 79.32501220703125
+    }
+  ],
+  "final_train_loss": 1.777011141426101,
+  "final_eval_loss": 0.00010976,
+  "total_steps": 32,
+  "gpu_name": "NVIDIA A800-SXM4-80GB",
+  "gpu_total_memory_gb": 79.32501220703125,
+  "torch_version": "2.6.0+cu124",
+  "cuda_version": "12.4",
+  "batch_size": 2,
+  "gradient_accumulation_steps": 8,
+  "lora_rank": 8,
+  "learning_rate": 0.0002,
+  "timestamp": "2025-11-28 18:45:31"
+}

@@ -13,12 +13,12 @@ from tqdm import tqdm
 
 # ==================== 配置参数 ====================
 # 模型配置
-model_id_or_path = '/hpc2hdd/home/yuxuanzhao/init_model/Qwen2.5-7B-Instruct/'
-checkpoint_path = 'output/task1_classification/final_model'  # 或使用特定的checkpoint
+model_id_or_path = '/hpc2hdd/home/yuxuanzhao/init_model/Qwen2.5-1.5B-Instruct/'
+checkpoint_path = 'checkpoint/task1_classification/final_model'  # 或使用特定的checkpoint
 system = 'You are a helpful assistant specialized in classifying user requests.'
 
 # 测试数据
-test_data_path = '/hpc2hdd/home/yuxuanzhao/haodong/3102project/assets/test.jsonl'
+test_data_path = './assets/test.jsonl'
 
 # 推理配置
 max_new_tokens = 128  # 分类任务只需要短输出
@@ -26,7 +26,7 @@ temperature = 0  # 使用确定性输出
 stream = False  # 分类任务不需要流式输出
 
 # 输出配置
-output_file = 'task1_predictions.jsonl'
+output_file = './output/task1_predictions.jsonl'
 save_batch_size = 10  # 每处理10个样本保存一次
 
 print("="*80)

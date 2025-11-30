@@ -1,13 +1,13 @@
 {
   "paths": {
-    "input_file": "input_data.jsonl",
-    "output_file": "evaluation_results.jsonl",
+    "input_file": "./output/task2_predictions.jsonl",
+    "output_file": "./eval_output/task2_predictions_eval.jsonl",
     "embedding_model": "/hpc2hdd/home/yuxuanzhao/init_model/gme-Qwen2-VL-7B-Instruct/",
     "llm_model": "/hpc2hdd/home/yuxuanzhao/init_model/Qwen2.5-14B-Instruct/",
-    "prompt_json": "prompt.json"
+    "prompt_json": "./eval/prompt.json"
   },
   "cuda": {
-    "visible_devices": "1"
+    "visible_devices": "3"
   },
   "llm_generation": {
     "max_new_tokens": 512,

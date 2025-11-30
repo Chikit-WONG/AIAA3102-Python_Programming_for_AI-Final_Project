@@ -1,0 +1,95 @@
+====================================================================================================
+BENCHMARK SUMMARY REPORT
+Generated at: 2025-11-28 18:45:31
+====================================================================================================
+
+Baseline Configuration: 1_full_precision_bf16
+  - Training Type: full
+  - Peak Memory: 14.40 GB
+  - Training Time: 1.57 minutes
+  - Throughput: 5.30 samples/s
+
+----------------------------------------------------------------------------------------------------
+
+Configuration: 2_lora_bf16
+  Training Type: lora
+  Quantization: None
+  
+  Memory:
+    Peak: 3.10 GB (+78.4% vs baseline)
+    Average: 2.99 GB
+  
+  Performance:
+    Training Time: 1.13 min (-27.9% vs baseline)
+    Avg Step Time: 2.004s
+    Throughput: 7.35 samples/s (+38.8% vs baseline)
+  
+  Training Quality:
+    Final Training Loss: 2.5093
+    Final Eval Loss: 0.0002
+  
+  Configuration Details:
+    Batch Size: 2
+    Gradient Accumulation: 8
+    Learning Rate: 0.0001
+    LoRA Rank: 8
+
+----------------------------------------------------------------------------------------------------
+
+Configuration: 3_qlora_4bit
+  Training Type: lora
+  Quantization: 4bit
+  
+  Memory:
+    Peak: 1.30 GB (+91.0% vs baseline)
+    Average: 1.19 GB
+  
+  Performance:
+    Training Time: 1.58 min (+0.6% vs baseline)
+    Avg Step Time: 2.781s
+    Throughput: 5.27 samples/s (-0.6% vs baseline)
+  
+  Training Quality:
+    Final Training Loss: 1.6129
+    Final Eval Loss: 0.0001
+  
+  Configuration Details:
+    Batch Size: 2
+    Gradient Accumulation: 8
+    Learning Rate: 0.0002
+    LoRA Rank: 8
+
+----------------------------------------------------------------------------------------------------
+
+Configuration: 4_qlora_8bit
+  Training Type: lora
+  Quantization: 8bit
+  
+  Memory:
+    Peak: 1.89 GB (+86.9% vs baseline)
+    Average: 1.78 GB
+  
+  Performance:
+    Training Time: 7.61 min (+384.1% vs baseline)
+    Avg Step Time: 13.583s
+    Throughput: 1.09 samples/s (-79.3% vs baseline)
+  
+  Training Quality:
+    Final Training Loss: 1.7770
+    Final Eval Loss: 0.0001
+  
+  Configuration Details:
+    Batch Size: 2
+    Gradient Accumulation: 8
+    Learning Rate: 0.0002
+    LoRA Rank: 8
+
+----------------------------------------------------------------------------------------------------
+
+KEY FINDINGS:
+
+1. QLoRA 4-bit reduces memory by ~91.0% compared to full precision
+2. QLoRA 8-bit reduces memory by ~86.9% compared to full precision
+3. LoRA (bf16) reduces memory by ~78.4% compared to full precision
+
+====================================================================================================

@@ -13,12 +13,12 @@ from tqdm import tqdm
 
 # ==================== 配置参数 ====================
 # 模型配置
-model_id_or_path = '/hpc2hdd/home/yuxuanzhao/init_model/Qwen2.5-7B-Instruct/'
-checkpoint_path = 'output/task2_response_generation/final_model'  # 或使用特定的checkpoint
+model_id_or_path = '/hpc2hdd/home/yuxuanzhao/init_model/Qwen2.5-1.5B-Instruct/'
+checkpoint_path = 'checkpoint/task2_response_generation/final_model'  # 或使用特定的checkpoint
 system = 'You are a helpful customer service assistant. Generate appropriate responses to user requests based on their category.'
 
 # 测试数据
-test_data_path = '/hpc2hdd/home/yuxuanzhao/haodong/3102project/assets/test.jsonl'
+test_data_path = './assets/test.jsonl'
 
 # 推理配置
 max_new_tokens = 512  # 回复生成需要更长的输出
@@ -26,7 +26,7 @@ temperature = 0.7  # 稍微增加一些随机性，使回复更自然
 stream = False  # 可以设为True查看生成过程
 
 # 输出配置
-output_file = 'task2_predictions.jsonl'
+output_file = './output/task2_predictions.jsonl'
 save_batch_size = 10  # 每处理10个样本保存一次
 
 print("="*80)

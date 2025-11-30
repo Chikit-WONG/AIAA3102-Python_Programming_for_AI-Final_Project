@@ -20,12 +20,12 @@ seed_everything(42)
 
 # ==================== 超参数配置 ====================
 # 模型配置
-model_id_or_path = '/hpc2hdd/home/ckwong627/workdir/spatialGraph/models/Qwen2.5-VL-7B-Instruct'
+model_id_or_path = '/hpc2hdd/home/yuxuanzhao/init_model/Qwen2.5-1.5B-Instruct/'
 system = 'You are a helpful assistant specialized in classifying user requests.'
-output_dir = 'output/task1_classification'
+output_dir = 'checkpoint/task1_classification'
 
 # 数据集配置
-train_data_path = '/hpc2hdd/home/ckwong627/workdir/3102project/assets/train.jsonl'  # 训练数据路径
+train_data_path = './assets/train.jsonl'  # 训练数据路径
 max_length = 2048
 num_proc = 4
 
@@ -100,7 +100,7 @@ train_data = load_jsonl_data(train_data_path)
 logger.info(f'Total training samples: {len(train_data)}')
 
 # 加载验证数据（使用独立的validation.jsonl）
-val_data_path = '/hpc2hdd/home/ckwong627/workdir/3102project/assets/validation.jsonl'
+val_data_path = '/hpc2hdd/home/yuxuanzhao/haodong/3102project/assets/validation.jsonl'
 if os.path.exists(val_data_path):
     logger.info(f'Loading validation data from {val_data_path}')
     val_data = load_jsonl_data(val_data_path)

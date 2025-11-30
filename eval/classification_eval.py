@@ -316,8 +316,8 @@ if __name__ == "__main__":
         output_dir = sys.argv[2] if len(sys.argv) > 2 else None
     else:
         # 默认路径(修改为你的文件路径)
-        jsonl_file = "/hpc2hdd/home/yuxuanzhao/haodong/3102project/task1_predictions.jsonl"
-        output_dir = "./output/classification"  # 使用输入文件所在目录
+        jsonl_file = "./output/task1_predictions.jsonl"
+        output_dir = "./eval_output/classification1"  # 使用输入文件所在目录
     
     try:
         main(jsonl_file, output_dir)

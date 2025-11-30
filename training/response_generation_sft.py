@@ -20,12 +20,12 @@ seed_everything(42)
 
 # ==================== 超参数配置 ====================
 # 模型配置
-model_id_or_path = '/hpc2hdd/home/yuxuanzhao/init_model/Qwen2.5-7B-Instruct/'
+model_id_or_path = '/hpc2hdd/home/yuxuanzhao/init_model/Qwen2.5-1.5B-Instruct/'
 system = 'You are a helpful customer service assistant. Generate appropriate responses to user requests based on their category.'
-output_dir = 'output/task2_response_generation'
+output_dir = 'checkpoint/task2_response_generation'
 
 # 数据集配置
-train_data_path = '/hpc2hdd/home/yuxuanzhao/haodong/3102project/assets/train.jsonl'  # 训练数据路径
+train_data_path = './assets/train.jsonl'  # 训练数据路径
 max_length = 2048
 num_proc = 4
 

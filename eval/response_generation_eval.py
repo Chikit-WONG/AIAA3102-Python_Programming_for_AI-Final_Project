@@ -443,7 +443,7 @@ def main():
     主函数
     """
     parser = argparse.ArgumentParser(description='Response Evaluation Script')
-    parser.add_argument('--config', type=str, default='config.json',
+    parser.add_argument('--config', type=str, default='./eval/config.json',
                         help='配置文件路径')
     parser.add_argument('--input', type=str, default=None,
                         help='输入文件路径（覆盖配置文件）')
