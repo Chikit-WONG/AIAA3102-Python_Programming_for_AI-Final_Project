@@ -5,3 +5,13 @@ __pycache__/
 *.pptx
 
 1.txt
+
+test.py
+
+3102.txt
+
+models/
+
+checkpoint
+
+output/

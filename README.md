@@ -1,273 +1,401 @@
 # AIAA3102 Python Programming for AI - Final Project
 
-## 📋 项目简介
+## 📋 Project Overview
 
-本项目是 AIAA3102 课程的期末项目，专注于**客户服务意图分类与响应生成**任务。项目使用 Qwen2.5 大语言模型，通过监督微调（SFT）技术，实现对客户支持对话的智能处理，并与基线方法（0-shot、Few-shot）进行对比实验。
+This project is the final project for the AIAA3102 course, focusing on **Customer Service Intent Classification and Response Generation** tasks.  The project uses the Qwen2. 5 large language model with Supervised Fine-Tuning (SFT) techniques to achieve intelligent processing of customer support conversations, and conducts comparative experiments with baseline methods (0-shot, Few-shot). 
 
-## 🗂️ 项目结构
+## 🗂️ Project Structure
 
 ```
-.   
-├── training/                      # 模型训练模块
-│   ├── classification_sft.py      # 意图分类任务 SFT 训练
-│   ├── response_generation_sft.py # 响应生成任务 SFT 训练
-│   ├── run_benchmark.py           # 基准测试运行脚本
-│   ├── benchmark_utils.py         # 基准测试工具函数
-│   └── visualize_results.py       # 结果可视化脚本
+.    
+├── training/                      # Model training module
+│   ├── classification_sft.py      # Intent classification SFT training
+│   ├── response_generation_sft.py # Response generation SFT training
+│   ├── run_benchmark.py           # Benchmark running script
+│   ├── benchmark_utils.py         # Benchmark utility functions
+│   └── visualize_results.py       # Results visualization script
 │
-├── eval/                          # 模型评估模块
-│   ├── classification_eval.py     # 意图分类评估
-│   ├── classification_eval_robust.py # 鲁棒性分类评估
-│   ├── response_generation_eval. py   # 响应生成评估
-│   ├── config.json                # 评估配置文件
-│   └── prompt.json                # Prompt 模板配置
+├── eval/                          # Model evaluation module
+│   ├── classification_eval.py     # Intent classification evaluation
+│   ├── classification_eval_robust.py # Robust classification evaluation
+│   ├── response_generation_eval.py   # Response generation evaluation
+│   ├── config.json                # Evaluation configuration file
+│   └── prompt. json                # Prompt template configuration
 │
-├── infer/                         # 微调模型推理模块
-│   ├── task1_inference.py         # 任务1（意图分类）推理
-│   └── task2_inference.py         # 任务2（响应生成）推理
+├── infer/                         # Fine-tuned model inference module
+│   ├── task1_inference.py         # Task 1 (intent classification) inference
+│   └── task2_inference.py         # Task 2 (response generation) inference
 │
-├── comparison_infer/              # 基线对比推理模块
-│   ├── task1_baseline_0shot. py    # 任务1 基线推理（0-shot）
-│   ├── task1_baseline_10shot.py   # 任务1 基线推理（10-shot）
-│   ├── task2_baseline_0shot.py    # 任务2 基线推理（0-shot）
-│   └── task2_baseline_10shot.py   # 任务2 基线推理（10-shot）
+├── comparison_infer/              # Baseline comparison inference module
+│   ├── task1_baseline_0shot.py    # Task 1 baseline inference (0-shot)
+│   ├── task1_baseline_10shot.py   # Task 1 baseline inference (10-shot)
+│   ├── task2_baseline_0shot. py    # Task 2 baseline inference (0-shot)
+│   └── task2_baseline_10shot.py   # Task 2 baseline inference (10-shot)
 │
-├── assets/                        # 数据集文件目录
-│   ├── train. jsonl                # 训练集
-│   ├── validation.jsonl           # 验证集
-│   └── test.jsonl                 # 测试集
+├── assets/                        # Dataset files directory
+│   ├── train. jsonl                # Training set
+│   ├── validation.jsonl           # Validation set
+│   └── test. jsonl                 # Test set
 │
-├── output/                        # 推理预测结果目录
-│   ├── task1_predictions.jsonl           # 任务1 SFT模型预测结果
-│   ├── task1_baseline_0shot_predictions.jsonl   # 任务1 0-shot预测结果
-│   ├── task1_baseline_10shot_predictions.jsonl  # 任务1 10-shot预测结果
-│   ├── task2_predictions.jsonl           # 任务2 SFT模型预测结果
-│   ├── task2_baseline_0shot_predictions. jsonl   # 任务2 0-shot预测结果
-│   └── task2_baseline_10shot_predictions.jsonl  # 任务2 10-shot预测结果
+├── output/                        # Inference prediction results directory
+│   ├── task1_predictions.jsonl           # Task 1 SFT model predictions
+│   ├── task1_baseline_0shot_predictions.jsonl   # Task 1 0-shot predictions
+│   ├── task1_baseline_10shot_predictions.jsonl  # Task 1 10-shot predictions
+│   ├── task2_predictions. jsonl           # Task 2 SFT model predictions
+│   ├── task2_baseline_0shot_predictions.jsonl   # Task 2 0-shot predictions
+│   └── task2_baseline_10shot_predictions.jsonl  # Task 2 10-shot predictions
 │
-├── checkpoints/                   # 模型 checkpoint 目录（本地生成，未上传）
-├── eval_output/                   # 评估输出目录
-├── benchmark_output/              # 基准测试输出目录
+├── checkpoint/                    # Model checkpoint directory (generated locally, not uploaded)
+│   ├── task1_classification/      # Task 1 classification model weights
+│   └── task2_response_generation/ # Task 2 response generation model weights
 │
-├── split. py                       # 数据集分层抽样划分脚本
-├── tokenize.py                    # Qwen2.5 分词预处理脚本
-├── test. py                        # 测试脚本
+├── models/                        # Pre-trained base models directory (generated locally, not uploaded)
+│   └── Qwen2.5-1.5B-Instruct/     # Qwen2. 5 base model
 │
-├── Bitext_Sample_Customer_Support_Training_Dataset_27K_responses-v11.csv  # 原始数据集
-├── data. jsonl                     # 处理后的数据
-└── data_tokenize.jsonl            # 分词后的数据
+├── eval_output/                   # Evaluation output directory
+├── benchmark_output/              # Benchmark output directory
+│
+├── app.py                         # 🌐 Demo backend API service
+├── index.html                     # 🌐 Demo frontend page
+│
+├── split. py                       # Dataset stratified sampling script
+├── tokenize.py                    # Qwen2.5 tokenization preprocessing script
+├── test. py                        # Test script
+│
+├── Bitext_Sample_Customer_Support_Training_Dataset_27K_responses-v11.csv  # Original dataset
+├── data. jsonl                     # Processed data
+└── data_tokenize.jsonl            # Tokenized data
 ```
 
-## 📊 数据集
+## 📊 Dataset
 
-本项目使用 **Bitext Customer Support Training Dataset**，包含约 27K 条客户服务对话样本，涵盖 11 个意图类别：
+This project uses the **Bitext Customer Support Training Dataset**, containing approximately 27K customer service conversation samples, covering 11 intent categories:
 
 `FEEDBACK`, `REFUND`, `ACCOUNT`, `ORDER`, `SHIPPING`, `SUBSCRIPTION`, `PAYMENT`, `CANCEL`, `DELIVERY`, `INVOICE`, `CONTACT`
 
-### 数据集划分
+### Dataset Split
 
-数据集已划分为三部分，存储在 `assets/` 目录下：
+The dataset has been split into three parts, stored in the `assets/` directory:
 
-| 文件               | 说明   |
-| ------------------ | ------ |
-| `train.jsonl`      | 训练集 |
-| `validation.jsonl` | 验证集 |
-| `test.jsonl`       | 测试集 |
+| File | Description |
+|------|-------------|
+| `train.jsonl` | Training set |
+| `validation. jsonl` | Validation set |
+| `test.jsonl` | Test set |
 
-### 数据格式
+### Data Format
 
-每条数据为 JSON 格式，包含以下字段：
+Each data entry is in JSON format, containing the following fields:
 
 ```json
 {
   "flags": "BLM",
-  "instruction": "用户输入文本",
+  "instruction": "User input text",
   "category": "ORDER",
   "intent": "place_order",
-  "response": "客服回复文本..."
+  "response": "Customer service response text..."
 }
 ```
 
-| 字段          | 说明              |
-| ------------- | ----------------- |
-| `flags`       | 数据标记          |
-| `instruction` | 用户输入/查询     |
-| `category`    | 意图大类（11 类） |
-| `intent`      | 细分意图          |
-| `response`    | 期望的客服回复    |
+| Field | Description |
+|-------|-------------|
+| `flags` | Data marker |
+| `instruction` | User input/query |
+| `category` | Intent category (11 classes) |
+| `intent` | Specific intent |
+| `response` | Expected customer service response |
 
-### 数据预处理
+### Data Preprocessing
 
-1. **数据划分**：使用 `split. py` 进行分层抽样，确保训练集和验证集中各类别比例一致
+1. **Data Split**: Use `split.py` for stratified sampling to ensure consistent category proportions in training and validation sets
    ```bash
    python split.py --input_file data.jsonl --train_file train.jsonl --val_file val.jsonl --test_ratio 0.1
    ```
 
-2.  **数据分词**：使用 `tokenize. py` 对数据进行 Qwen2. 5 分词预处理
+2.  **Data Tokenization**: Use `tokenize.py` for Qwen2.5 tokenization preprocessing
    ```bash
-   python tokenize.py data.jsonl data_tokenize.jsonl --model Qwen/Qwen2.5-7B-Instruct
+   python tokenize.py data. jsonl data_tokenize.jsonl --model Qwen/Qwen2. 5-7B-Instruct
    ```
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-### 环境要求
+### Requirements
 
 - Python 3.10+
 - PyTorch
 - Transformers
 - Swift (ModelScope)
+- Flask (for Demo service)
 - tqdm
 
-### 安装依赖
+### Install Dependencies
 
 ```bash
-pip install torch transformers tqdm ms-swift
+pip install torch transformers tqdm ms-swift flask flask-cors
+```
+or
+```bash
+pip install -r requirements.txt
 ```
 
-## 📝 任务说明
+### Download Base Model
 
-### 任务一：意图分类
+Download the Qwen2.5 base model and place it in the `models/` directory:
 
-根据用户输入预测客户服务意图类别（11 类分类任务）
-
-#### SFT 微调方法
 ```bash
-# 训练
+# Create models directory
+mkdir -p models
+
+# Download model using huggingface-cli (example)
+huggingface-cli download Qwen/Qwen2. 5-1.5B-Instruct --local-dir models/Qwen2. 5-1.5B-Instruct
+```
+
+Or download from ModelScope:
+```bash
+# Using modelscope
+from modelscope import snapshot_download
+snapshot_download('Qwen/Qwen2.5-1.5B-Instruct', cache_dir='./models')
+```
+
+> ⚠️ **Note**: The `models/` directory is not uploaded to GitHub due to the large file size. Please download the base model manually before running. 
+
+## 📝 Task Description
+
+### Task 1: Intent Classification
+
+Predict customer service intent categories based on user input (11-class classification task)
+
+#### SFT Fine-tuning Method
+```bash
+# Training
 python training/classification_sft.py
 
-# 推理
-python infer/task1_inference.py
+# Inference
+python infer/task1_inference. py
 
-# 评估
+# Evaluation
 python eval/classification_eval.py
 ```
 
-#### 基线对比方法
+#### Baseline Comparison Methods
 ```bash
-# 0-shot（无示例）
-python comparison_infer/task1_baseline_0shot.py
+# 0-shot (no examples)
+python comparison_infer/task1_baseline_0shot. py
 
-# 10-shot（每类1个示例，共11个）
-python comparison_infer/task1_baseline_10shot. py
+# 10-shot (1 example per class, 11 total)
+python comparison_infer/task1_baseline_10shot.py
 ```
 
-### 任务二：响应生成
+### Task 2: Response Generation
 
-根据用户问题和类别生成合适的客服回复
+Generate appropriate customer service responses based on user questions and categories
 
-#### SFT 微调方法
+#### SFT Fine-tuning Method
 ```bash
-# 训练
-python training/response_generation_sft. py
+# Training
+python training/response_generation_sft.py
 
-# 推理
+# Inference
 python infer/task2_inference.py
 
-# 评估
+# Evaluation
 python eval/response_generation_eval.py
 ```
 
-#### 基线对比方法
+#### Baseline Comparison Methods
 ```bash
-# 0-shot（无示例）
-python comparison_infer/task2_baseline_0shot.py
+# 0-shot (no examples)
+python comparison_infer/task2_baseline_0shot. py
 
-# 10-shot（每类1个示例，共11个）
+# 10-shot (1 example per class, 11 total)
 python comparison_infer/task2_baseline_10shot.py
 ```
 
-## 🔬 实验对比
+## 🔬 Experimental Comparison
 
-本项目对比了三种方法的性能：
+This project compares the performance of three methods:
 
-| 方法                   | 描述                               | 任务1脚本                   | 任务2脚本                  |
-| ---------------------- | ---------------------------------- | --------------------------- | -------------------------- |
-| **0-shot**             | 原始模型，无示例                   | `task1_baseline_0shot.py`   | `task2_baseline_0shot.py`  |
-| **Few-shot (10-shot)** | 原始模型 + 平衡采样示例（每类1个） | `task1_baseline_10shot. py` | `task2_baseline_10shot.py` |
-| **SFT 微调**           | 监督微调后的模型                   | `task1_inference.py`        | `task2_inference.py`       |
+| Method | Description | Task 1 Script | Task 2 Script |
+|--------|-------------|---------------|---------------|
+| **0-shot** | Original model, no examples | `task1_baseline_0shot.py` | `task2_baseline_0shot.py` |
+| **Few-shot (10-shot)** | Original model + balanced sampling examples (1 per class) | `task1_baseline_10shot. py` | `task2_baseline_10shot.py` |
+| **SFT Fine-tuning** | Supervised fine-tuned model | `task1_inference.py` | `task2_inference. py` |
 
-### Few-shot 策略说明
+### Few-shot Strategy Description
 
-Few-shot 基线采用**平衡抽样策略**：
-- 从验证集中每个类别各选择 1 个样本作为示例
-- 共 11 个类别，因此总计 11 个示例
-- 使用固定随机种子（seed=42）确保可复现性
+The Few-shot baseline adopts a **balanced sampling strategy**:
+- Select 1 sample from each category in the validation set as an example
+- 11 categories in total, resulting in 11 examples
+- Use a fixed random seed (seed=42) to ensure reproducibility
 
-## 📈 基准测试
+## 📈 Benchmark Testing
 
-运行完整的基准测试：
+Run the complete benchmark test:
 ```bash
 python training/run_benchmark. py
 ```
 
-可视化结果：
+Visualize results:
 ```bash
 python training/visualize_results.py
 ```
 
-## 🔧 配置说明
+## 🔧 Configuration
 
-| 配置项      | 位置               | 说明                 |
-| ----------- | ------------------ | -------------------- |
-| 评估配置    | `eval/config.json` | 评估参数设置         |
-| Prompt 模板 | `eval/prompt.json` | 各任务的 Prompt 模板 |
-| 模型路径    | 各脚本内           | 需根据实际环境修改   |
+| Configuration Item | Location | Description |
+|--------------------|----------|-------------|
+| Evaluation config | `eval/config.json` | Evaluation parameter settings |
+| Prompt templates | `eval/prompt.json` | Prompt templates for each task |
+| Model paths | Within each script | Modify according to actual environment |
+| Demo config | `app.py` | Demo service parameter configuration |
 
-## 📁 输出文件
+## 📁 Output Files
 
-### `output/` - 推理预测结果
+### `output/` - Inference Prediction Results
 
-| 文件                                       | 说明                       |
-| ------------------------------------------ | -------------------------- |
-| `task1_predictions.jsonl`                  | 任务1 SFT 微调模型预测结果 |
-| `task1_baseline_0shot_predictions. jsonl`  | 任务1 0-shot 基线预测结果  |
-| `task1_baseline_10shot_predictions. jsonl` | 任务1 10-shot 基线预测结果 |
-| `task2_predictions.jsonl`                  | 任务2 SFT 微调模型预测结果 |
-| `task2_baseline_0shot_predictions. jsonl`  | 任务2 0-shot 基线预测结果  |
-| `task2_baseline_10shot_predictions.jsonl`  | 任务2 10-shot 基线预测结果 |
+| File | Description |
+|------|-------------|
+| `task1_predictions.jsonl` | Task 1 SFT fine-tuned model predictions |
+| `task1_baseline_0shot_predictions.jsonl` | Task 1 0-shot baseline predictions |
+| `task1_baseline_10shot_predictions. jsonl` | Task 1 10-shot baseline predictions |
+| `task2_predictions.jsonl` | Task 2 SFT fine-tuned model predictions |
+| `task2_baseline_0shot_predictions.jsonl` | Task 2 0-shot baseline predictions |
+| `task2_baseline_10shot_predictions. jsonl` | Task 2 10-shot baseline predictions |
 
-#### 预测结果格式
+#### Prediction Result Format
 
-**任务1（意图分类）预测结果：**
+**Task 1 (Intent Classification) Prediction Results:**
 ```json
 {
-  "instruction": "用户输入文本",
+  "instruction": "User input text",
   "predicted_category": "ORDER",
   "ground_truth_category": "ORDER",
-  "ground_truth_response": "期望的客服回复..."
+  "ground_truth_response": "Expected customer service response..."
 }
 ```
 
-**任务2（响应生成）预测结果：**
+**Task 2 (Response Generation) Prediction Results:**
 ```json
 {
-  "instruction": "用户输入文本",
+  "instruction": "User input text",
   "category": "ORDER",
-  "generated_response": "模型生成的回复.. .",
-  "ground_truth_response": "期望的客服回复..."
+  "generated_response": "Model generated response...",
+  "ground_truth_response": "Expected customer service response..."
 }
 ```
 
-### `checkpoints/` - 模型 Checkpoint
+### `checkpoint/` - Model Checkpoints
 
-> ⚠️ **注意**：由于 checkpoint 文件较大，未上传至 GitHub 仓库。本地运行训练脚本时会自动生成。
+> ⚠️ **Note**: Due to the large size of checkpoint files, they are not uploaded to the GitHub repository. They will be automatically generated when running training scripts locally. 
 
-| 内容             | 说明                       |
-| ---------------- | -------------------------- |
-| 任务1 checkpoint | 意图分类任务的微调模型权重 |
-| 任务2 checkpoint | 响应生成任务的微调模型权重 |
+| Directory | Description |
+|-----------|-------------|
+| `task1_classification/` | Intent classification task fine-tuned model weights |
+| `task2_response_generation/` | Response generation task fine-tuned model weights |
 
-### 其他输出目录
+### `models/` - Pre-trained Base Models
 
-| 目录                | 内容           |
-| ------------------- | -------------- |
-| `eval_output/`      | 评估结果和指标 |
-| `benchmark_output/` | 基准测试结果   |
+> ⚠️ **Note**: Due to the large size of model files, they are not uploaded to the GitHub repository. Please download the base model manually and place it in this directory.
+
+| Directory | Description |
+|-----------|-------------|
+| `Qwen2.5-1.5B-Instruct/` | Qwen2. 5 1.5B Instruct base model |
+
+### Other Output Directories
+
+| Directory | Content |
+|-----------|---------|
+| `eval_output/` | Evaluation results and metrics |
+| `benchmark_output/` | Benchmark test results |
+
+## 🌐 Demo
+
+This project provides a complete Web Demo for an intuitive experience of the intelligent email assistant functionality.
+
+### Features
+
+- 🏷️ **Email Classification**: Automatically identify the intent category of user emails
+- 💬 **Response Generation**: Generate professional customer service responses based on email content and classification
+- 🔄 **One-click Processing**: Support simultaneous classification and response generation
+
+### Start Demo
+
+```bash
+# Install additional dependencies
+pip install flask flask-cors
+
+# Start service
+python app. py
+```
+
+### Access URLs
+
+After the service starts, you can access it through the following methods:
+
+| Access Method | URL |
+|---------------|-----|
+| Local access | http://localhost:5000 |
+| LAN access | http://<server-IP>:5000 |
+
+### API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/` | Frontend page |
+| GET | `/api/health` | Health check |
+| POST | `/api/classify` | Email classification |
+| POST | `/api/generate` | Response generation |
+| POST | `/api/process` | Complete processing (classification + generation) |
+
+#### API Request Examples
+
+**Email Classification `/api/classify`**
+```json
+// Request
+{"email": "I want to cancel my subscription"}
+
+// Response
+{"success": true, "category": "CANCEL"}
+```
+
+**Response Generation `/api/generate`**
+```json
+// Request
+{"email": "I want to cancel my subscription", "category": "CANCEL"}
+
+// Response
+{"success": true, "response": "We're sorry to hear that you want to cancel... "}
+```
+
+**Complete Processing `/api/process`**
+```json
+// Request
+{"email": "I want to cancel my subscription"}
+
+// Response
+{
+  "success": true,
+  "category": "CANCEL",
+  "response": "We're sorry to hear that you want to cancel..."
+}
+```
+
+### Demo Configuration
+
+Demo service configuration parameters are located at the top of `app.py`:
+
+| Parameter | Default Value | Description |
+|-----------|---------------|-------------|
+| `HOST` | `0.0.0.0` | Service listening address |
+| `PORT` | `5000` | Service port |
+| `BASE_MODEL_PATH` | `models/Qwen2.5-1. 5B-Instruct/` | Qwen2.5 base model path |
+| `TASK1_CHECKPOINT` | `checkpoint/task1_classification/final_model` | Classification model path |
+| `TASK2_CHECKPOINT` | `checkpoint/task2_response_generation/final_model` | Generation model path |
 
 ## 📄 License
 
-本项目仅供学术研究使用。
+This project is for academic research purposes only. 
 
-## 👥 作者
+## 👥 Authors
 
-AIAA3102 课程学生项目
+AIAA3102 Course Student Project

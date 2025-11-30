@@ -20,7 +20,7 @@ seed_everything(42)
 
 # ==================== 超参数配置 ====================
 # 模型配置
-model_id_or_path = '/hpc2hdd/home/yuxuanzhao/init_model/Qwen2.5-1.5B-Instruct/'
+model_id_or_path = 'models/Qwen2.5-1.5B-Instruct/' # Your model path here
 system = 'You are a helpful assistant specialized in classifying user requests.'
 output_dir = 'checkpoint/task1_classification'
 

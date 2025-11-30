@@ -6,14 +6,14 @@
 import os
 import json
 from datetime import datetime
-os.environ['CUDA_VISIBLE_DEVICES'] = '3'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 from swift.llm import PtEngine, InferRequest, RequestConfig, get_template
 from tqdm import tqdm
 
 # ==================== 配置参数 ====================
 # 模型配置
-model_id_or_path = '/hpc2hdd/home/yuxuanzhao/init_model/Qwen2.5-1.5B-Instruct/'
+model_id_or_path = 'models/Qwen2.5-1.5B-Instruct/' # Your model path here
 checkpoint_path = 'checkpoint/task1_classification/final_model'  # 或使用特定的checkpoint
 system = 'You are a helpful assistant specialized in classifying user requests.'
 
