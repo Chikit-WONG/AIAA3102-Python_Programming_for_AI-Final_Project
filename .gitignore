@@ -1,3 +1,7 @@
 checkpoints/
 
 __pycache__/
+
+*.pptx
+
+1.txt
