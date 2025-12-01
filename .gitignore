@@ -1,4 +1,6 @@
-checkpoints/
+checkpoint/
+
+checkpoint_new/
 
 __pycache__/
 
@@ -11,7 +13,5 @@ test.py
 3102.txt
 
 models/
-
-checkpoint
 
 output/
